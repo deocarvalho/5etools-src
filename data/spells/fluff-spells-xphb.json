@@ -17,54 +17,6 @@
 			]
 		},
 		{
-			"name": "Armor of Agathys",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Armor of Agathys.webp"
-					},
-					"credit": "Tuan Duong Chu",
-					"width": 1976,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Arms of Hadar",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Arms of Hadar.webp"
-					},
-					"credit": "Tuan Duong Chu",
-					"width": 1976,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Bigby's Hand",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Bigby's Hand.webp"
-					},
-					"credit": "Brian Valeza",
-					"width": 2225,
-					"height": 1440
-				}
-			]
-		},
-		{
 			"name": "Chromatic Orb",
 			"source": "XPHB",
 			"images": [
@@ -193,22 +145,6 @@
 			]
 		},
 		{
-			"name": "Evard's Black Tentacles",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Evard's Black Tentacles.webp"
-					},
-					"credit": "Craig J Spearing",
-					"width": 2225,
-					"height": 1440
-				}
-			]
-		},
-		{
 			"name": "Find Familiar",
 			"source": "XPHB",
 			"images": [
@@ -289,22 +225,6 @@
 			]
 		},
 		{
-			"name": "Hunger of Hadar",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Hunger of Hadar.webp"
-					},
-					"credit": "Joseph Weston",
-					"width": 2226,
-					"height": 1440
-				}
-			]
-		},
-		{
 			"name": "Ice Knife",
 			"source": "XPHB",
 			"images": [
@@ -317,22 +237,6 @@
 					"credit": "Calder Moore",
 					"width": 696,
 					"height": 821
-				}
-			]
-		},
-		{
-			"name": "Jallarzi's Storm of Radiance",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Jallarzi's Storm of Radiance.webp"
-					},
-					"credit": "Joseph Weston",
-					"width": 2226,
-					"height": 1440
 				}
 			]
 		},
@@ -380,38 +284,6 @@
 					},
 					"credit": "Aaron J. Riley",
 					"width": 2040,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Melf's Acid Arrow",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Melf's Acid Arrow.webp"
-					},
-					"credit": "Martin Mottet",
-					"width": 2225,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Mordenkainen's Magnificent Mansion",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Mordenkainen's Magnificent Mansion.webp"
-					},
-					"credit": "Helge C. Balzer",
-					"width": 2226,
 					"height": 1440
 				}
 			]
@@ -545,54 +417,6 @@
 			]
 		},
 		{
-			"name": "Summon Aberration",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Aberration.webp"
-					},
-					"credit": "Justine Cruz",
-					"width": 850,
-					"height": 624
-				}
-			]
-		},
-		{
-			"name": "Summon Celestial",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Celestial.webp"
-					},
-					"credit": "Eric Belisle",
-					"width": 850,
-					"height": 988
-				}
-			]
-		},
-		{
-			"name": "Summon Construct",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Construct.webp"
-					},
-					"credit": "Hector Ortiz",
-					"width": 850,
-					"height": 1241
-				}
-			]
-		},
-		{
 			"name": "Summon Dragon",
 			"source": "XPHB",
 			"images": [
@@ -605,86 +429,6 @@
 					"credit": "Polar Engine",
 					"width": 850,
 					"height": 1059
-				}
-			]
-		},
-		{
-			"name": "Summon Fey",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Fey.webp"
-					},
-					"credit": "Joseph Weston",
-					"width": 2225,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Summon Fiend",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Fiend.webp"
-					},
-					"credit": "Alexandre Honore",
-					"width": 850,
-					"height": 872
-				}
-			]
-		},
-		{
-			"name": "Summon Undead",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Summon Undead.webp"
-					},
-					"credit": "Ustin Sweet",
-					"width": 850,
-					"height": 1300
-				}
-			]
-		},
-		{
-			"name": "Tasha's Bubbling Cauldron",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Tasha's Bubbling Cauldron.webp"
-					},
-					"credit": "Linda Lithen",
-					"width": 2225,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Tenser's Floating Disk",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Tenser's Floating Disk.webp"
-					},
-					"credit": "Ralph Horsley",
-					"width": 2225,
-					"height": 1440
 				}
 			]
 		},
@@ -780,38 +524,6 @@
 					},
 					"credit": "Andrew Mar",
 					"width": 1152,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Witch Bolt",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Witch Bolt.webp"
-					},
-					"credit": "Helge C. Balzer",
-					"width": 2226,
-					"height": 1440
-				}
-			]
-		},
-		{
-			"name": "Yolande's Regal Presence",
-			"source": "XPHB",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "spells/XPHB/Yolande's Regal Presence.webp"
-					},
-					"credit": "April Prime",
-					"width": 2037,
 					"height": 1440
 				}
 			]
