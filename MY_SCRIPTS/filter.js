@@ -131,7 +131,70 @@ function removeNonSrdSpellSources() {
     console.log('Successfully filtered file: ' + sourcePath);
 }
 
+function removeNonSrdBackgrounds() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/backgrounds.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.background.length;
+    data.background = data.background.filter(bg => {
+        const keep = bg.srd52 === true;
+        if (!keep)
+            console.log(bg.name + ' (' + bg.source + ') removed');
+        return keep;
+    });
+
+    console.log(`Kept ${data.background.length} of ${before} backgrounds`);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+function removeNonSrdRaces() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/races.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const beforeRaces = data.race.length;
+    data.race = data.race.filter(r => {
+        const keep = r.srd52 === true;
+        if (!keep) console.log(r.name + ' (' + r.source + ') removed');
+        return keep;
+    });
+
+    const beforeSubraces = (data.subrace || []).length;
+    if (data.subrace) {
+        data.subrace = data.subrace.filter(r => {
+            const keep = r.srd52 === true;
+            if (!keep) console.log('[subrace] ' + r.name + ' (' + r.source + ') removed');
+            return keep;
+        });
+    }
+
+    console.log(`Kept ${data.race.length} of ${beforeRaces} races`);
+    console.log(`Kept ${(data.subrace || []).length} of ${beforeSubraces} subraces`);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
 // removeBySourceNotXPHBAndNonSRDSubclasses();
 // removeNonSRDSpells();
 // removeNonSrdSpellFluffs();
-removeNonSrdSpellSources();
+// removeNonSrdSpellSources();
+// removeNonSrdBackgrounds();
+// removeNonSrdRaces();
+
+function removeNonSrdFeats() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/feats.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.feat.length;
+    data.feat = data.feat.filter(f => {
+        const keep = f.srd52 === true;
+        if (!keep) console.log(f.name + ' (' + f.source + ') removed');
+        return keep;
+    });
+
+    console.log(`Kept ${data.feat.length} of ${before} feats`);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+removeNonSrdFeats();
