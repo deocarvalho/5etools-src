@@ -47,6 +47,8 @@ function removeBySourceNotXPHBAndNonSRDSubclasses() {
     });
 }
 
+// removeBySourceNotXPHBAndNonSRDSubclasses();
+
 function removeNonSRDSpells() {
     try {
         const path = 'c:/Users/andre/Cursor Project/5etools-src/data/spells/spells-xphb.json';
@@ -70,6 +72,8 @@ function removeNonSRDSpells() {
     }
 }
 
+// removeNonSRDSpells();
+
 function removeNonSrdSpellFluffs() {
     const fluffPath = 'c:/Users/andre/Cursor Project/5etools-src/data/spells/fluff-spells-xphb.json';
     const rawFluffData = fs.readFileSync(fluffPath, 'utf8');
@@ -90,6 +94,8 @@ function removeNonSrdSpellFluffs() {
     fs.writeFileSync(fluffPath, JSON.stringify(fluffData, null, '\t') + '\n', 'utf8');
     console.log('Successfully filtered file: ' + fluffPath);
 }
+
+// removeNonSrdSpellFluffs();
 
 function removeNonSrdSpellSources() {
     console.log('Starting removeNonSrdSpellSources');
@@ -131,6 +137,8 @@ function removeNonSrdSpellSources() {
     console.log('Successfully filtered file: ' + sourcePath);
 }
 
+// removeNonSrdSpellSources();
+
 function removeNonSrdBackgrounds() {
     const path = 'c:/Users/andre/Cursor Project/5etools-src/data/backgrounds.json';
     const data = JSON.parse(fs.readFileSync(path, 'utf8'));
@@ -147,6 +155,8 @@ function removeNonSrdBackgrounds() {
     fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
     console.log('Successfully filtered file: ' + path);
 }
+
+// removeNonSrdBackgrounds();
 
 function removeNonSrdRaces() {
     const path = 'c:/Users/andre/Cursor Project/5etools-src/data/races.json';
@@ -174,11 +184,6 @@ function removeNonSrdRaces() {
     console.log('Successfully filtered file: ' + path);
 }
 
-// removeBySourceNotXPHBAndNonSRDSubclasses();
-// removeNonSRDSpells();
-// removeNonSrdSpellFluffs();
-// removeNonSrdSpellSources();
-// removeNonSrdBackgrounds();
 // removeNonSrdRaces();
 
 function removeNonSrdFeats() {
@@ -197,4 +202,229 @@ function removeNonSrdFeats() {
     console.log('Successfully filtered file: ' + path);
 }
 
-removeNonSrdFeats();
+// removeNonSrdFeats();
+
+function removeNonSrdActions() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/actions.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.action.length;
+    data.action = data.action.filter(a => {
+        const keep = a.srd52 === true;
+        if (!keep) console.log(a.name + ' (' + a.source + ') removed');
+        return keep;
+    });
+
+    console.log(`Kept ${data.action.length} of ${before} actions`);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdActions();
+
+function removeNonSrdConditionsDiseases() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/conditionsdiseases.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    for (const key of ['condition', 'disease', 'status']) {
+        if (!Array.isArray(data[key])) continue;
+        const before = data[key].length;
+        data[key] = data[key].filter(x => {
+            const keep = x.srd52 === true;
+            if (!keep) console.log('[' + key + '] ' + x.name + ' (' + x.source + ') removed');
+            return keep;
+        });
+        console.log(key + ': kept ' + data[key].length + ' of ' + before);
+    }
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdConditionsDiseases();
+
+function removeNonSrdItems() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/items.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    for (const key of ['item', 'itemGroup']) {
+        if (!Array.isArray(data[key])) continue;
+        const before = data[key].length;
+        data[key] = data[key].filter(x => {
+            const keep = x.srd52 === true;
+            if (!keep) console.log('[' + key + '] ' + x.name + ' (' + x.source + ') removed');
+            return keep;
+        });
+        console.log(key + ': kept ' + data[key].length + ' of ' + before);
+    }
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdItems();
+
+function removeNonSrdItemsBase() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/items-base.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    // Filter by srd52
+    const before = data.baseitem.length;
+    data.baseitem = data.baseitem.filter(x => {
+        const keep = x.srd52 === true;
+        if (!keep) console.log('[baseitem] ' + x.name + ' (' + x.source + ') removed');
+        return keep;
+    });
+    console.log('baseitem: kept ' + data.baseitem.length + ' of ' + before);
+
+    // Reference tables: keep only XPHB/XDMG (remove duplicate PHB/DMG/AAG entries)
+    const xSources = new Set(['XPHB', 'XDMG']);
+    for (const key of ['itemProperty', 'itemType', 'itemTypeAdditionalEntries', 'itemEntry']) {
+        if (!Array.isArray(data[key])) continue;
+        const b = data[key].length;
+        data[key] = data[key].filter(x => xSources.has(x.source));
+        console.log(key + ': kept ' + data[key].length + ' of ' + b);
+    }
+    // itemMastery: all XPHB, keep all
+    console.log('itemMastery: keeping all ' + (data.itemMastery || []).length);
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+removeNonSrdItemsBase();
+
+function removeNonSrdDecks() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/decks.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    for (const key of ['deck', 'card']) {
+        if (!Array.isArray(data[key])) continue;
+        const before = data[key].length;
+        data[key] = data[key].filter(x => {
+            const keep = x.srd52 === true;
+            if (!keep) console.log('[' + key + '] ' + x.name + ' (' + x.source + ') removed');
+            return keep;
+        });
+        console.log(key + ': kept ' + data[key].length + ' of ' + before);
+    }
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdDecks();
+
+function removeNonSrdLanguages() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/languages.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    for (const key of ['language', 'languageScript']) {
+        if (!Array.isArray(data[key])) continue;
+        const before = data[key].length;
+        data[key] = data[key].filter(x => {
+            const keep = x.srd52 === true;
+            if (!keep) console.log('[' + key + '] ' + x.name + ' (' + x.source + ') removed');
+            return keep;
+        });
+        console.log(key + ': kept ' + data[key].length + ' of ' + before);
+    }
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdLanguages();
+
+function removeNonSrdOptionalFeatures() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/optionalfeatures.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.optionalfeature.length;
+    data.optionalfeature = data.optionalfeature.filter(x => {
+        const keep = x.srd52 === true;
+        if (!keep) console.log(x.name + ' (' + x.source + ') removed');
+        return keep;
+    });
+
+    console.log('optionalfeature: kept ' + data.optionalfeature.length + ' of ' + before);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdOptionalFeatures();
+
+function removeNonSrdSenses() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/senses.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.sense.length;
+    data.sense = data.sense.filter(x => {
+        const keep = x.srd52 === true;
+        if (!keep) console.log(x.name + ' (' + x.source + ') removed');
+        return keep;
+    });
+
+    console.log('sense: kept ' + data.sense.length + ' of ' + before);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdSenses();
+
+function removeNonSrdSkills() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/skills.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.skill.length;
+    data.skill = data.skill.filter(x => {
+        const keep = x.srd52 === true;
+        if (!keep) console.log(x.name + ' (' + x.source + ') removed');
+        return keep;
+    });
+
+    console.log('skill: kept ' + data.skill.length + ' of ' + before);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+// removeNonSrdSkills();
+
+function removeNonSrdTrapsHazards() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/trapshazards.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    for (const key of ['trap', 'hazard']) {
+        if (!Array.isArray(data[key])) continue;
+        const before = data[key].length;
+        data[key] = data[key].filter(x => {
+            const keep = x.srd52 === true;
+            if (!keep) console.log('[' + key + '] ' + x.name + ' (' + x.source + ') removed');
+            return keep;
+        });
+        console.log(key + ': kept ' + data[key].length + ' of ' + before);
+    }
+
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+removeNonSrdTrapsHazards();
+
+function removeNonSrdVariantRules() {
+    const path = 'c:/Users/andre/Cursor Project/5etools-src/data/variantrules.json';
+    const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+    const before = data.variantrule.length;
+    data.variantrule = data.variantrule.filter(x => {
+        const keep = x.srd52 === true;
+        if (!keep) console.log(x.name + ' (' + x.source + ') removed');
+        return keep;
+    });
+
+    console.log('variantrule: kept ' + data.variantrule.length + ' of ' + before);
+    fs.writeFileSync(path, JSON.stringify(data, null, '\t') + '\n', 'utf8');
+    console.log('Successfully filtered file: ' + path);
+}
+
+removeNonSrdVariantRules();
